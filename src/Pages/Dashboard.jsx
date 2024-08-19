@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
+
 import Dropdown from 'react-bootstrap/Dropdown';
 import { LuRefreshCcw } from 'react-icons/lu';
 import { CiMenuKebab } from 'react-icons/ci';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Category from '../components/Category';
 import { deleteCategory, deleteWidget } from '../Redux/dashboardSlice';
 import { useState } from 'react';
-import { Drawer } from "flowbite-react";
+import { Button, Drawer } from "flowbite-react";
 
 const Dashboard = ({ searchTerm }) => {
   const navigate = useNavigate();
@@ -31,28 +31,27 @@ const Dashboard = ({ searchTerm }) => {
   );
 
   return (
-    <div>
+    <div className='bg-slate-200'>
       <div className={"d-flex justify-content-between align-items-center mt-2 main px-4"}>
-        <h3 className="mb-0">CNAPP Dashboard</h3>
-        <div className="d-flex align-items-center gap-2">
+        <h3 className="mb-0 text-2xl">CNAPP Dashboard</h3>
+        <div className="d-flex align-items-center gap-3">
         <div className="flex min-h-[20vh] items-center justify-center">
-        <Button onClick={() => setIsOpen(true)}>Filter Widget</Button>
+        <Button gradientDuoTone="greenToBlue" onClick={() => setIsOpen(true)}>Filter Widget</Button>
       </div>
       <Drawer open={isOpen} onClose={handleClose} position="right">
         <Drawer.Header title="Drawer" />
-        <Drawer.Items></Drawer.Items>
       </Drawer>
-          <Button variant="outline-secondary" style={{ color: 'black' }} onClick={handleAddWidget}>
+          <Button  gradientDuoTone="greenToBlue" onClick={handleAddWidget}>
             Add Widget +
           </Button>
           <Button variant="outline-secondary">
-            <LuRefreshCcw style={{ color: 'black' }} />
+            <LuRefreshCcw style={{ height: '20px' }} />
           </Button>
           <Button variant="outline-secondary">
-            <CiMenuKebab style={{ color: 'black' }} />
+            <CiMenuKebab style={{ height: '20px' }} />
           </Button>
           <Dropdown>
-            <Dropdown.Toggle style={{ backgroundColor: 'white', color: 'black', borderColor: 'black' }} id="dropdown-basic">
+            <Dropdown.Toggle style={{ backgroundColor: 'white', color: 'black', borderColor: 'black' }} id="dropdown-basic" className='d-flex align-items-center'>
               <MdAccessTimeFilled className="align-items-center me-2" size={20} />
               Last 2 days
             </Dropdown.Toggle>

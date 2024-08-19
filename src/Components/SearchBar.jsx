@@ -13,8 +13,8 @@ const SearchBar = ({ onSearch }) => {
           type="text"
           placeholder="Search widgets...."
           rightIcon={AiOutlineSearch}
-          className="hidden lg:inline"
           onChange={handleSearchChange}
+          style={{ width: '400px' }}
         />
       </form>
   );

@@ -24,7 +24,7 @@ const Category = ({
 
   return (
     <div className={"mb-4"}>
-      <div className="d-flex justify-content-between align-items-center">
+      <div className="d-flex justify-content-between align-items-center px-5">
         <h4>{category.name}</h4>
         <Button variant="outline-danger" onClick={onDeleteCategory}>
           <IoClose />
@@ -32,7 +32,7 @@ const Category = ({
       </div>
 
       {sliceArray(combinedItems, 3).map((row, rowIndex) => (
-        <Row key={rowIndex} className="mb-3">
+        <Row key={rowIndex} className="mb-3 px-3">
           {row.map((item, itemIndex) => (
             <Col key={itemIndex} md={4} className="mb-2">
               {item.empty ? (
@@ -50,7 +50,7 @@ const Category = ({
                 </Card>
               ) : (
                 <Card>
-                  <Card.Header>{item.title}</Card.Header>
+                  <Card.Title>{item.title}</Card.Title>
                   <Button
                     variant="outline-secondary"
                     onClick={() => onDeleteWidget(rowIndex)}
