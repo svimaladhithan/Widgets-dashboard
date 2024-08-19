@@ -24,16 +24,17 @@ const dashboardSlice = createSlice({
       state.selectedCategoryIndex = action.payload;
     },
     deleteWidget: (state, action) => {
-        state.widgets = state.widgets.filter((_, index) => index !== action.payload);
-      },
-      deleteCategory: (state, action) => {
-        const indexToDelete = action.payload;
-        state.categories = state.categories.filter((_, index) => index !== indexToDelete);
-        state.widgets = state.widgets.filter(widget => widget.categoryIndex !== indexToDelete);
-        if (state.selectedCategoryIndex === indexToDelete) {
-          state.selectedCategoryIndex = Math.max(0, indexToDelete - 1);
-        }
-      },
+      const widgetId = action.payload;
+      state.widgets = state.widgets.filter(widget => widget.id !== widgetId);
+    },
+    deleteCategory: (state, action) => {
+      const categoryIndex = action.payload;
+      state.categories = state.categories.filter((_, index) => index !== categoryIndex);
+      state.widgets = state.widgets.filter(widget => widget.categoryIndex !== categoryIndex);
+      if (state.selectedCategoryIndex === categoryIndex) {
+        state.selectedCategoryIndex = Math.max(0, categoryIndex - 1);
+      }
+    },
   },
 });
 

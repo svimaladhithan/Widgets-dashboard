@@ -4,7 +4,7 @@
 
 #heading{
     background: linear-gradient(to left,
-    violet, indigo, blue, green, yellow, orange, red);
+    violet, blue, green);
     background-clip: text;
     display: inline;
     color: transparent;
