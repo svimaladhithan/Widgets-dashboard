@@ -1,0 +1,31 @@
+.main{
+    background-color: rgb(243, 240, 240);
+}
+
+.card{
+    position: relative;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 20px;
+    height: 200px;
+    width: 400px;
+}
+
+.button{    
+    display: flex;
+    margin:auto;
+    margin-top: 40px;
+}
+
+.card .delete {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    background-color: transparent; 
+    border: none; 
+    color: red; 
+    cursor: pointer; 
+  }
+
+  
