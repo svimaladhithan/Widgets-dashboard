@@ -1,5 +1,18 @@
-.main{
-    background-color: rgb(243, 240, 240);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#heading{
+    background: linear-gradient(to left,
+    violet, indigo, blue, green, yellow, orange, red);
+    background-clip: text;
+    display: inline;
+    color: transparent;
+    animation: animated 5s linear infinite;
+}
+
+@keyframes animated{
+    to {background-position-x: 161px;}
 }
 
 .card{

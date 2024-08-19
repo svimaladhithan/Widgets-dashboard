@@ -1,4 +1,6 @@
-import Form from "react-bootstrap/Form";
+import { TextInput } from "flowbite-react";
+import { AiOutlineSearch } from "react-icons/ai";
+
 
 const SearchBar = ({ onSearch }) => {
   const handleSearchChange = (event) => {
@@ -6,14 +8,15 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <Form className={"d-flex align-items-center"}>
-      <Form.Control
-        type="text"
-        placeholder="Search anything..."
-        aria-label="Search"
-        onChange={handleSearchChange}
-      />
-    </Form>
+    <form>
+        <TextInput
+          type="text"
+          placeholder="Search widgets...."
+          rightIcon={AiOutlineSearch}
+          className="hidden lg:inline"
+          onChange={handleSearchChange}
+        />
+      </form>
   );
 };
 

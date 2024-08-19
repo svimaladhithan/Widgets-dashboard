@@ -7,7 +7,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
+
 
 const Header = ({ onSearch }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Header = ({ onSearch }) => {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
         <Nav.Link onClick={handleClick}>
-          <Navbar.Brand href="#" className="fw-bold">
+          <Navbar.Brand href="#" className="fw-bold" id="heading">
             Dashboard
           </Navbar.Brand>
         </Nav.Link>
@@ -30,6 +31,8 @@ const Header = ({ onSearch }) => {
           navbarScroll
         >
           <div className="d-flex align-items-center me-5">
+
+         
             <SearchBar onSearch={onSearch} />
 
             <MdOutlineNotificationsActive size={25} className="me-2" />

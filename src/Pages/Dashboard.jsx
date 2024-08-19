@@ -6,13 +6,17 @@ import { CiMenuKebab } from 'react-icons/ci';
 import { MdAccessTimeFilled } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import Category from '../components/Category';
-import { deleteCategory, deleteWidget } from '../redux/dashboardSlice';
+import { deleteCategory, deleteWidget } from '../Redux/dashboardSlice';
+import { useState } from 'react';
+import { Drawer } from "flowbite-react";
 
 const Dashboard = ({ searchTerm }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { widgets, categories } = useSelector((state) => state.dashboard);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const handleClose = () => setIsOpen(false);
   const handleAddWidget = () => navigate('/manage');
   const handleDeleteWidget = (index) => dispatch(deleteWidget(index));
   const handleDeleteCategory = (index) => dispatch(deleteCategory(index));
@@ -28,9 +32,16 @@ const Dashboard = ({ searchTerm }) => {
 
   return (
     <div>
-      <div className={"d-flex justify-content-between align-items-center mt-2 main"}>
+      <div className={"d-flex justify-content-between align-items-center mt-2 main px-4"}>
         <h3 className="mb-0">CNAPP Dashboard</h3>
         <div className="d-flex align-items-center gap-2">
+        <div className="flex min-h-[20vh] items-center justify-center">
+        <Button onClick={() => setIsOpen(true)}>Filter Widget</Button>
+      </div>
+      <Drawer open={isOpen} onClose={handleClose} position="right">
+        <Drawer.Header title="Drawer" />
+        <Drawer.Items></Drawer.Items>
+      </Drawer>
           <Button variant="outline-secondary" style={{ color: 'black' }} onClick={handleAddWidget}>
             Add Widget +
           </Button>
@@ -48,7 +59,7 @@ const Dashboard = ({ searchTerm }) => {
           </Dropdown>
         </div>
       </div>
-
+      
       {categories.map((category, index) => (
         <Category
           key={index}
