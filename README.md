@@ -7,9 +7,8 @@ The Widgets Dashboard is a web application designed to manage and display variou
 The Widgets Dashboard is deployed and hosted on Netlify. You can view the live application at https://main--widgetdashboard.netlify.app/
 
 **Running the Application Locally**
-Start the Development Server
 
-Using **npm run dev**
+Use the command **npm install** in the terminal and start the Development Server using **npm run dev**
 
 This command will start the development server and open the application in your default web browser
 After running the development server, you can interact with the Widgets Dashboard in your web browser. You can add, delete, and filter widgets, and manage categories.
