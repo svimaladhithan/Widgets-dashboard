@@ -1,18 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { TextInput } from "flowbite-react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { AiOutlineSearch } from "react-icons/ai";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import Search from "../components/Search";
 
 
 const Header = ({ onSearch }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/");
+  };
+
+  const handleSearchChange = (event) => {
+    onSearch(event.target.value);
   };
 
   return (
@@ -25,7 +30,15 @@ const Header = ({ onSearch }) => {
         </Nav.Link>
 
         <div className="d-flex align-items-center flex-grow-1 justify-content-center">
-          <Search onSearch={onSearch} />
+        <form>
+        <TextInput
+          type="text"
+          placeholder="Search widgets...."
+          rightIcon={AiOutlineSearch}
+          onChange={handleSearchChange}
+          style={{ width: '400px' }}
+        />
+      </form>
         </div>
 
         <Nav

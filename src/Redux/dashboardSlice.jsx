@@ -18,7 +18,8 @@ const dashboardSlice = createSlice({
       state.categories.push(action.payload);
     },
     addWidget: (state, action) => {
-      state.widgets.push(action.payload);
+        const newWidget = { id: Date.now(), ...action.payload };
+      state.widgets.push(newWidget);
     },
     setSelectedCategoryIndex: (state, action) => {
       state.selectedCategoryIndex = action.payload;

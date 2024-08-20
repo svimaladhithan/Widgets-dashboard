@@ -8,6 +8,7 @@ const Category = ({
   onDeleteCategory,
   onDeleteWidget,
 }) => {
+    console.log('Widgets:', widgets);
   const numberOfEmptyCards = 3 - Math.min(3, widgets.length);
   const combinedItems = [
     ...widgets,
@@ -53,7 +54,10 @@ const Category = ({
                   <Card.Title>{item.title}</Card.Title>
                   <Button
                     variant="outline-secondary"
-                    onClick={() => onDeleteWidget(rowIndex)}
+                    onClick={() => {
+                        console.log('Widget ID:', item.id);
+                        onDeleteWidget(item.id)
+                    }}
                     className="delete"
                   >
                     <IoClose />

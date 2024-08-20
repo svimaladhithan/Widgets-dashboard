@@ -28,7 +28,10 @@ const Dashboard = ({ searchTerm }) => {
 
   const handleClose = () => setIsOpen(false);
   const handleAddWidget = () => navigate('/manage');
-  const handleDeleteWidget = (widgetId) => dispatch(deleteWidget(widgetId));
+  const handleDeleteWidget = (widgetId) => {
+    console.log('Deleting widget with ID:', widgetId);
+    dispatch(deleteWidget(widgetId));
+  };
   const handleDeleteCategory = (index) => dispatch(deleteCategory(index));
 
   const handleCheckboxChange = (widgetId, categoryIndex) => {
@@ -48,8 +51,6 @@ const Dashboard = ({ searchTerm }) => {
     const widgetsToRemove = Object.keys(checkedWidgets[categoryIndex] || {})
       .filter(widgetId => !checkedWidgets[categoryIndex][widgetId])
       .map(widgetId => parseInt(widgetId, 10));
-
-    console.log('Widgets to Remove:', widgetsToRemove);
 
     
     widgetsToRemove.forEach(widgetId => dispatch(deleteWidget(widgetId)));
