@@ -2,7 +2,7 @@ import { TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 
 
-const SearchBar = ({ onSearch }) => {
+const Search = ({ onSearch }) => {
   const handleSearchChange = (event) => {
     onSearch(event.target.value);
   };
@@ -20,4 +20,4 @@ const SearchBar = ({ onSearch }) => {
   );
 };
 
-export default SearchBar;
+export default Search;

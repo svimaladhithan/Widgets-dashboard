@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Dashboard from './Pages/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ManageDashboard from './Pages/ManageDashboard';
-import { Button } from "flowbite-react";
 import Header from './Components/Header';
 
 const App = () => {

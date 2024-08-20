@@ -6,7 +6,8 @@ import Navbar from "react-bootstrap/Navbar";
 import { FaCircleUser } from "react-icons/fa6";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
+import Search from "../components/Search";
+
 
 const Header = ({ onSearch }) => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Header = ({ onSearch }) => {
         </Nav.Link>
 
         <div className="d-flex align-items-center flex-grow-1 justify-content-center">
-          <SearchBar onSearch={onSearch} />
+          <Search onSearch={onSearch} />
         </div>
 
         <Nav
