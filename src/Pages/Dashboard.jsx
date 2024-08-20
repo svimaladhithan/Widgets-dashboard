@@ -18,7 +18,7 @@ const Dashboard = ({ searchTerm }) => {
   const [checkedWidgets, setCheckedWidgets] = useState({});
 
   useEffect(() => {
-    // Initialize checkedWidgets state for each category
+    
     const initialCheckedWidgets = {};
     categories.forEach((_, index) => {
       initialCheckedWidgets[index] = {};
@@ -44,22 +44,22 @@ const Dashboard = ({ searchTerm }) => {
   const handleConfirmChanges = (categoryIndex) => {
     console.log('Checked Widgets before Confirm:', checkedWidgets);
 
-    // Identify widgets to remove based on unchecked state
+   
     const widgetsToRemove = Object.keys(checkedWidgets[categoryIndex] || {})
       .filter(widgetId => !checkedWidgets[categoryIndex][widgetId])
       .map(widgetId => parseInt(widgetId, 10));
 
     console.log('Widgets to Remove:', widgetsToRemove);
 
-    // Dispatch removal of widgets
+    
     widgetsToRemove.forEach(widgetId => dispatch(deleteWidget(widgetId)));
 
-    // Close drawer
+   
     setIsOpen(false);
   };
 
   const handleCancelChanges = () => {
-    // Reset checkedWidgets to its initial state
+   
     setCheckedWidgets(prev => {
       const updatedCheckedWidgets = {};
       categories.forEach((_, index) => {
@@ -70,7 +70,7 @@ const Dashboard = ({ searchTerm }) => {
     setIsOpen(false); 
   };
 
-  // Group widgets by category
+ 
   const groupedWidgets = categories.map((_, index) =>
     widgets.filter(
       (widget) =>
