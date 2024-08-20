@@ -28,7 +28,7 @@ const Dashboard = ({ searchTerm }) => {
   const handleClose = () => setIsOpen(false);
   const handleAddWidget = () => navigate('/manage');
   const handleDeleteWidget = (widgetId) => {
-    console.log('Deleting widget with ID:', widgetId);
+    //console.log('Deleting widget with ID:', widgetId);
     dispatch(deleteWidget(widgetId));
   };
   const handleDeleteCategory = (index) => dispatch(deleteCategory(index));
@@ -88,8 +88,9 @@ const Dashboard = ({ searchTerm }) => {
           <div className="flex min-h-[20vh] items-center justify-center">
             <Button gradientDuoTone="greenToBlue" onClick={() => setIsOpen(true)}>Filter Widget</Button>
           </div>
-          <Drawer open={isOpen} onClose={handleClose} position="right" style={{ width: '600px' }}>
+          <Drawer open={isOpen} onClose={handleClose} position="right" className="drawer-container">
             <Drawer.Header title="Filter Widgets" />
+            <div className="drawer-content">
             <Tabs aria-label="Category Tabs" variant="pills">
               {categories.map((category, index) => (
                 <Tabs.Item key={index} title={category}>
@@ -104,17 +105,18 @@ const Dashboard = ({ searchTerm }) => {
                       <span>{widget.title}</span>
                     </div>
                   ))}
-                  <div className="d-flex justify-content-end gap-2 mt-4">
+                  <div className="button-container">
                     <Button onClick={() => handleConfirmChanges(index)} gradientDuoTone="greenToBlue">
                       Confirm
                     </Button>
-                    <Button onClick={handleCancelChanges} variant="outline-secondary">
+                    <Button onClick={handleCancelChanges} color="gray">
                       Cancel
                     </Button>
                   </div>
                 </Tabs.Item>
               ))}
             </Tabs>
+            </div>
           </Drawer>
           <Button gradientDuoTone="greenToBlue" onClick={handleAddWidget}>
             Add Widget +
@@ -146,8 +148,8 @@ const Dashboard = ({ searchTerm }) => {
           <div key={index} className={"mb-4"}>
             <div className="d-flex justify-content-between align-items-center px-5">
               <h4>{category}</h4>
-              <Button variant="outline-danger" onClick={() => handleDeleteCategory(index)}>
-                <IoClose />
+              <Button style={{'backgroundColor': 'transparent'}} onClick={() => handleDeleteCategory(index)}>
+                <IoClose style={{color:'red'}} size={20}/>
               </Button>
             </div>
 
@@ -160,8 +162,7 @@ const Dashboard = ({ searchTerm }) => {
                         <Card.Body>
                           <Button
                             className="button"
-                            variant="outline-secondary"
-                            style={{ color: "black" }}
+                            color="gray"
                             onClick={handleAddWidget}
                           >
                             + Add Widget
@@ -171,7 +172,7 @@ const Dashboard = ({ searchTerm }) => {
                     ) : (
                       <Card>
                         <Card.Title>{item.title}</Card.Title>
-                        <Button
+                        <Button style={{backgroundColor: 'transparent', border: 'none'}}
                          
                           onClick={() => {
                            
@@ -179,7 +180,7 @@ const Dashboard = ({ searchTerm }) => {
                           }}
                           className="delete"
                         >
-                          <IoClose style={{color:'red'}}/>
+                          <IoClose style={{color:'red'}} size={15}/>
                         </Button>
                         <Card.Body>
                           <Card.Text>{item.description}</Card.Text>
