@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Tabs } from "flowbite-react";
+import { Tabs, Button, Drawer } from "flowbite-react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import { LuRefreshCcw } from 'react-icons/lu';
 import { CiMenuKebab } from 'react-icons/ci';
 import { MdAccessTimeFilled } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import Category from '../components/Category';
 import { deleteCategory, deleteWidget } from '../Redux/dashboardSlice';
 import { useEffect, useState } from 'react';
-import { Button, Drawer } from "flowbite-react";
+import { Row, Col, Card } from 'react-bootstrap';
+import { IoClose } from 'react-icons/io5';
 
 const Dashboard = ({ searchTerm }) => {
   const navigate = useNavigate();
@@ -18,7 +18,6 @@ const Dashboard = ({ searchTerm }) => {
   const [checkedWidgets, setCheckedWidgets] = useState({});
 
   useEffect(() => {
-    
     const initialCheckedWidgets = {};
     categories.forEach((_, index) => {
       initialCheckedWidgets[index] = {};
@@ -45,22 +44,15 @@ const Dashboard = ({ searchTerm }) => {
   };
 
   const handleConfirmChanges = (categoryIndex) => {
-    console.log('Checked Widgets before Confirm:', checkedWidgets);
-
-   
     const widgetsToRemove = Object.keys(checkedWidgets[categoryIndex] || {})
       .filter(widgetId => !checkedWidgets[categoryIndex][widgetId])
       .map(widgetId => parseInt(widgetId, 10));
 
-    
     widgetsToRemove.forEach(widgetId => dispatch(deleteWidget(widgetId)));
-
-   
     setIsOpen(false);
   };
 
   const handleCancelChanges = () => {
-   
     setCheckedWidgets(prev => {
       const updatedCheckedWidgets = {};
       categories.forEach((_, index) => {
@@ -71,7 +63,6 @@ const Dashboard = ({ searchTerm }) => {
     setIsOpen(false); 
   };
 
- 
   const groupedWidgets = categories.map((_, index) =>
     widgets.filter(
       (widget) =>
@@ -80,6 +71,14 @@ const Dashboard = ({ searchTerm }) => {
           widget.description.toLowerCase().includes(searchTerm.toLowerCase()))
     )
   );
+
+  const sliceArray = (array, arraySize) => {
+    const result = [];
+    for (let i = 0; i < array.length; i += arraySize) {
+      result.push(array.slice(i, i + arraySize));
+    }
+    return result;
+  };
 
   return (
     <div className='bg-slate-200'>
@@ -135,16 +134,65 @@ const Dashboard = ({ searchTerm }) => {
         </div>
       </div>
 
-      {categories.map((category, index) => (
-        <Category
-          key={index}
-          category={{ name: category }}
-          widgets={groupedWidgets[index]}
-          onAddWidget={handleAddWidget}
-          onDeleteCategory={() => handleDeleteCategory(index)}
-          onDeleteWidget={handleDeleteWidget}
-        />
-      ))}
+      {categories.map((category, index) => {
+        const widgets = groupedWidgets[index];
+        const numberOfEmptyCards = 3 - Math.min(3, widgets.length);
+        const combinedItems = [
+          ...widgets,
+          ...Array.from({ length: numberOfEmptyCards }).map(() => ({ empty: true })),
+        ];
+
+        return (
+          <div key={index} className={"mb-4"}>
+            <div className="d-flex justify-content-between align-items-center px-5">
+              <h4>{category}</h4>
+              <Button variant="outline-danger" onClick={() => handleDeleteCategory(index)}>
+                <IoClose />
+              </Button>
+            </div>
+
+            {sliceArray(combinedItems, 3).map((row, rowIndex) => (
+              <Row key={rowIndex} className="mb-3 px-3">
+                {row.map((item, itemIndex) => (
+                  <Col key={itemIndex} md={4} className="mb-2">
+                    {item.empty ? (
+                      <Card className="empty">
+                        <Card.Body>
+                          <Button
+                            className="button"
+                            variant="outline-secondary"
+                            style={{ color: "black" }}
+                            onClick={handleAddWidget}
+                          >
+                            + Add Widget
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    ) : (
+                      <Card>
+                        <Card.Title>{item.title}</Card.Title>
+                        <Button
+                         
+                          onClick={() => {
+                           
+                            handleDeleteWidget(item.id);
+                          }}
+                          className="delete"
+                        >
+                          <IoClose style={{color:'red'}}/>
+                        </Button>
+                        <Card.Body>
+                          <Card.Text>{item.description}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                    )}
+                  </Col>
+                ))}
+              </Row>
+            ))}
+          </div>
+        );
+      })}
     </div>
   );
 };
