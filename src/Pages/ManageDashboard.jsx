@@ -28,6 +28,7 @@ const ManageDashboard = () => {
   const [widgetDescription, setWidgetDescription] = useState("");
   const [errors, setErrors] = useState({});
 
+  // Reset selected category index when categories change
   useEffect(() => {
     dispatch(setSelectedCategoryIndex(-1));
   }, [categories, dispatch]);
@@ -95,7 +96,7 @@ const ManageDashboard = () => {
             style={{ maxWidth: "500px", margin: "auto" }}
             value={selectedCategoryIndex}
             onChange={(e) =>
-              dispatch(setSelectedCategoryIndex(Number(e.target.value)))
+              dispatch(setSelectedCategoryIndex(Number(e.target.value)))   // Update selected category index
             }
           >
             <option value={-1}>Select Category</option>
@@ -116,7 +117,7 @@ const ManageDashboard = () => {
             onChange={(e) => {
               setWidgetTitle(e.target.value);
               if (e.target.value) {
-                setErrors((prevErrors) => ({ ...prevErrors, widgetTitle: "" }));
+                setErrors((prevErrors) => ({ ...prevErrors, widgetTitle: "" }));  // Clear title error if input is valid
               }
             }}
             isInvalid={!!errors.widgetTitle}

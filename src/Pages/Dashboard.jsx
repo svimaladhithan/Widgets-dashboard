@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { IoClose } from 'react-icons/io5';
 
+// Dashboard component with props for searchTerm
 const Dashboard = ({ searchTerm }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Dashboard = ({ searchTerm }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [checkedWidgets, setCheckedWidgets] = useState({});
 
+  // Initialize checkedWidgets when categories change
   useEffect(() => {
     const initialCheckedWidgets = {};
     categories.forEach((_, index) => {
@@ -33,6 +35,7 @@ const Dashboard = ({ searchTerm }) => {
   };
   const handleDeleteCategory = (index) => dispatch(deleteCategory(index));
 
+  // Toggle widget selection state
   const handleCheckboxChange = (widgetId, categoryIndex) => {
     setCheckedWidgets(prev => ({
       ...prev,
@@ -52,6 +55,7 @@ const Dashboard = ({ searchTerm }) => {
     setIsOpen(false);
   };
 
+    // Revert changes and close the drawer
   const handleCancelChanges = () => {
     setCheckedWidgets(prev => {
       const updatedCheckedWidgets = {};
@@ -63,6 +67,7 @@ const Dashboard = ({ searchTerm }) => {
     setIsOpen(false); 
   };
 
+    // Group widgets by category and filter based on searchTerm
   const groupedWidgets = categories.map((_, index) =>
     widgets.filter(
       (widget) =>
@@ -72,6 +77,7 @@ const Dashboard = ({ searchTerm }) => {
     )
   );
 
+  //function to split array into chunks of a given size
   const sliceArray = (array, arraySize) => {
     const result = [];
     for (let i = 0; i < array.length; i += arraySize) {
@@ -138,7 +144,7 @@ const Dashboard = ({ searchTerm }) => {
 
       {categories.map((category, index) => {
         const widgets = groupedWidgets[index];
-        const numberOfEmptyCards = 3 - Math.min(3, widgets.length);
+        const numberOfEmptyCards = 3 - Math.min(3, widgets.length);  // Calculate number of empty cards to display
         const combinedItems = [
           ...widgets,
           ...Array.from({ length: numberOfEmptyCards }).map(() => ({ empty: true })),
