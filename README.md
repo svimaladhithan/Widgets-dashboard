@@ -2,6 +2,10 @@
 **Project Overview**
 The Widgets Dashboard is a web application designed to manage and display various widgets across multiple categories. Users can add, delete, and filter widgets within each category. The dashboard provides a user-friendly interface using React and Redux for state management, along with Bootstrap and Flowbite for styling and layout.
 
+**Deployment**
+
+The Widgets Dashboard is deployed and hosted on Netlify. You can view the live application at https://main--widgetdashboard.netlify.app/
+
 **Running the Application Locally**
 Start the Development Server
 
