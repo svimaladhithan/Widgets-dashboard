@@ -77,6 +77,7 @@ const Dashboard = ({ searchTerm }) => {
     )
   );
 
+  
   //function to split array into chunks of a given size
   const sliceArray = (array, arraySize) => {
     const result = [];
@@ -88,9 +89,9 @@ const Dashboard = ({ searchTerm }) => {
 
   return (
     <div className='bg-slate-200'>
-      <div className={"d-flex justify-content-between align-items-center mt-2 main px-4"}>
-        <h3 className="mb-0 text-2xl">CNAPP Dashboard</h3>
-        <div className="d-flex align-items-center gap-3">
+      <div className={"d-flex flex-col flex-md-row justify-content-between align-items-center main px-md-4"}>
+        <h3 className="mb-0 mb-md-0 text-2xl">CNAPP Dashboard</h3>
+        <div className="d-flex flex-column flex-md-row align-items-center gap-3">
           <div className="flex min-h-[20vh] items-center justify-center">
             <Button gradientDuoTone="greenToBlue" onClick={() => setIsOpen(true)}>Filter Widget</Button>
           </div>
